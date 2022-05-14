@@ -6,13 +6,21 @@
 
     <groupId>com.superb.upetstar</groupId>
     <artifactId>upetstar-common</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
     </properties>
+
+    <!--指定仓库地址【上传至私服】-->
+    <distributionManagement>
+        <repository>
+            <!--这个ID要和刚才在maven的settings随便起的ID一直才能识别,刚才起的是upetstar-repository,所以下面的id就取upetstar-repository-->
+            <id>upetstar-repository</id>
+            <!-- 这个url就是仓库的地址 -->
+            <url>http://111.67.203.217:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -75,4 +83,29 @@
             <version>3.5.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--发布代码Jar插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <!--发布源码插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

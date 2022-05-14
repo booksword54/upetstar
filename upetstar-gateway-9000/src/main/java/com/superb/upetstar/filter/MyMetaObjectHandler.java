@@ -1,4 +1,4 @@
-package com.superb.upetstar.common.filter;
+package com.superb.upetstar.filter;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

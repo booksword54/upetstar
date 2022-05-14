@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.superb.upetstar</groupId>
     <artifactId>upetstar-gateway-9001</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -60,7 +60,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!--引⼊webflux-->
+        <!--引入webflux-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -76,14 +76,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--lombok⼯具-->
+        <!--lombok工具-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
-        <!--引⼊Jaxb，开始-->
+        <!--引入Jaxb，开始-->
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
@@ -108,7 +108,7 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
-        <!--引⼊Jaxb，结束-->
+        <!--引入Jaxb，结束-->
         <!-- Actuator可以帮助你监控和管理Spring Boot应用-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -119,6 +119,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.1</version>
         </dependency>
     </dependencies>
 

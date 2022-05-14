@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RefreshScope
 @RestController
-@RequestMapping("/")
+@RequestMapping("/openid")
 @ConfigurationProperties(prefix = "weixin", ignoreInvalidFields = true)
 public class OpenidController {
 

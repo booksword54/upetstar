@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8080
 spring:
   main:
     allow-bean-definition-overriding: true # 允许使用相同名称重新注册不同的bean实现
@@ -11,10 +11,10 @@ spring:
     nacos:
       discovery:
         server-addr: 182.43.87.79:8848,36.133.74.179:8848,124.220.184.87:8848
-        namespace: d5842761-38b0-4885-aa19-0815f05f29fc
+        namespace: a0ca895a-06bc-498b-b1e4-76a5e80719e8
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: ${spring.cloud.nacos.discovery.namespace}
+        namespace: d5842761-38b0-4885-aa19-0815f05f29fc
         group: ${spring.profiles.active}    #生产环境
         file-extension: yaml
         extension-configs:
