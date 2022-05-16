@@ -3,13 +3,17 @@ package com.superb.upetstar.common.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author hym
  * @description
  */
 @Data
 @ApiModel("领养申请视图对象")
-public class AdoptApplicationVO {
+public class AdoptApplicationVO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer userId; // 用户id
     private Integer adoptRecordId; // 送养记录id
     private String name; // 姓名

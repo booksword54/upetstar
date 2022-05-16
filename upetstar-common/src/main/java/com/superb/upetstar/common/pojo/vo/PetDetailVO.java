@@ -3,6 +3,7 @@ package com.superb.upetstar.common.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,9 @@ import java.util.Date;
  */
 @Data
 @ApiModel("宠物详情信息视图对象")
-public class PetDetailVO {
+public class PetDetailVO  implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String[] images; // 宠物图像路径数组
     private String avatarUrl; // 宠物头像路径
     private String name; // 宠物姓名

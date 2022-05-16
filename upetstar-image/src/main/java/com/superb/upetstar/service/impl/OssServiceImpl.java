@@ -6,7 +6,6 @@ import com.superb.upetstar.utils.ConstantPropertiesUtils;
 import com.superb.upetstar.service.OssService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.joda.time.DateTime;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

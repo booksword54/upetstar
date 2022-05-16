@@ -5,7 +5,6 @@ import com.superb.upetstar.common.pojo.entity.Image;
 import com.superb.upetstar.mapper.ImageMapper;
 import com.superb.upetstar.service.IImageService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>

@@ -5,7 +5,6 @@ import com.superb.upetstar.common.pojo.entity.Image;
 import com.superb.upetstar.common.pojo.response.Result;
 import com.superb.upetstar.service.IImageService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

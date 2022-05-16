@@ -1,0 +1,11 @@
+version: 1
+services:
+  upetstar-record:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/upetstar-record
+    container_name: "upetstar-record"
+    restart: always
+    ports:
+      - "8080:8080"
+
+
+

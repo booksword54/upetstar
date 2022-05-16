@@ -4,13 +4,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author hym
  * @description
  */
 @Data
 @ApiModel("社区管理员注册VO")
-public class CUserRegisterVO {
+public class CUserRegisterVO  implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty("社区名称")
     private String cName;
     @ApiModelProperty("详细地址")
