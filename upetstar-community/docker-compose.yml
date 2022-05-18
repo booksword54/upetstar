@@ -1,0 +1,102 @@
+version: "1"
+services:
+  nginx_proxy:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/nginx-proxy:latest
+    container_name: "nginx_proxy"
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/nginx/conf.d
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  upetstar-community:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/upetstar-community:latest
+    container_name: "upetstar-community"
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - VIRTUAL_HOST=36.133.74.179
+    links:
+      - "redis"
+      - "mysql-master"
+      - "mysql-slave0"
+      - "mysql-slave1"
+      - "elasticsearch"
+  redis:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/redis-docker:6.2.6
+    container_name: "redis"
+    restart: always
+    ports:
+      - "6379:6379"
+  mysql-master:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:8.0.27
+    container_name: "mysql_master"
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/mysql-m/conf:/etc/mysql/conf.d
+      - /home/mysql-m/data:/etc/mysql/conf.d
+    command: [
+        '--character-set-server=utf8',
+        '--collation-server=utf8_unicode_ci',
+        '--default-time-zone=+8:00'
+    ]
+    ports:
+      - "17717:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: upetstar_record
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+  mysql-slave0:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:8.0.27
+    container_name: "mysql_slave0"
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/mysql-s0/conf:/etc/mysql/conf.d
+      - /home/mysql-s0/data:/etc/mysql/conf.d
+    command: [
+        '--character-set-server=utf8',
+        '--collation-server=utf8_unicode_ci',
+        '--default-time-zone=+8:00'
+    ]
+    ports:
+      - "17718:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: upetstar_record
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+  mysql-slave1:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:8.0.27
+    container_name: "mysql_slave2"
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/mysql-s1/conf:/etc/mysql/conf.d
+      - /home/mysql-s1/data:/etc/mysql/conf.d
+    command: [
+        '--character-set-server=utf8',
+        '--collation-server=utf8_unicode_ci',
+        '--default-time-zone=+8:00'
+    ]
+    ports:
+      - "17719:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: upetstar_record
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+  elasticsearch:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/elasticsearch-docker:7.6.2
+    container_name: elasticsearch
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"

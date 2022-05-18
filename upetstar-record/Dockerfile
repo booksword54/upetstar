@@ -7,4 +7,4 @@ CMD ["--server.port=8080"]
 #向外面暴露的端口
 EXPOSE 8080
 #容器启动的时候运行的命令
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","-Dfile.encoding=utf-8","/app.jar"]

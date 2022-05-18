@@ -11,10 +11,10 @@ spring:
     nacos:
       discovery:
         server-addr: 182.43.87.79:8848,36.133.74.179:8848,124.220.184.87:8848
-        namespace: a0ca895a-06bc-498b-b1e4-76a5e80719e8
+        namespace: 91f7bd0f-b4d2-4ec7-8359-56b82e844fed
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: 4f006264-eb0e-4445-ab75-4800594bee1f
+        namespace: 362afcd8-a377-4733-b1f1-92b3e3633037
         group: ${spring.profiles.active}    #生产环境
         file-extension: yaml
 

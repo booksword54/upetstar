@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   main:
     allow-bean-definition-overriding: true # 允许使用相同名称重新注册不同的bean实现
@@ -11,10 +11,10 @@ spring:
     nacos:
       discovery:
         server-addr: 182.43.87.79:8848,36.133.74.179:8848,124.220.184.87:8848
-        namespace: a0ca895a-06bc-498b-b1e4-76a5e80719e8
+        namespace: 91f7bd0f-b4d2-4ec7-8359-56b82e844fed
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: d5842761-38b0-4885-aa19-0815f05f29fc
+        namespace: 6bbbe763-4da5-4141-9dae-99c972b1696a
         group: ${spring.profiles.active}    #生产环境
         file-extension: yaml
         extension-configs:
@@ -38,7 +38,7 @@ dubbo:
   cloud:
     subscribed-services: upetstar-record,upetstar-community # 订阅 领养记录、社区管理 微服务
   scan:
-    base-packages: com.superb.upetstar.service.impl # 扫描的服务接口包路径
+    base-packages: com.superb.upetstar.upsmine.service.impl # 扫描的服务接口包路径
   protocol:
     name: dubbo # dubbo协议
     port: -1 # dubbo协议端口, -1 表示自增端口，从 20880 开始

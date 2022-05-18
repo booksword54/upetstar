@@ -1,0 +1,42 @@
+version: "1"
+services:
+  upetstar-mine:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/upetstar-mine:latest
+    container_name: "upetstar-mine"
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - VIRTUAL_HOST=43.226.152.69
+  redis:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/redis-docker:latest
+    container_name: "redis_6"
+    restart: always
+    ports:
+      - "6379:6379"
+  mysql-master:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:latest
+    container_name: "mysql8_master"
+    restart: always
+    ports:
+      - "17717:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+  mysql-slave0:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:latest
+    container_name: "mysql8_slave0"
+    restart: always
+    ports:
+      - "17718:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+  mysql-slave1:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/mysql-docker:latest
+    container_name: "mysql8_slave1"
+    restart: always
+    ports:
+      - "17719:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+

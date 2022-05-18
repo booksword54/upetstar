@@ -11,10 +11,10 @@ spring:
     nacos:
       discovery:
         server-addr: 182.43.87.79:8848,36.133.74.179:8848,124.220.184.87:8848
-        namespace: a0ca895a-06bc-498b-b1e4-76a5e80719e8
+        namespace: 91f7bd0f-b4d2-4ec7-8359-56b82e844fed
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: 6d73ebde-cf4d-4b5a-a7fc-dc36cfee24f3
+        namespace: 5b9630cc-4172-4e18-b0f3-a094c9fd7252
         group: ${spring.profiles.active}    #生产环境
         file-extension: yaml
         extension-configs:
@@ -35,7 +35,7 @@ dubbo:
   cloud:
     subscribed-services: upetstar-mine # 订阅 我的 微服务
   scan:
-    base-packages: com.superb.upetstar.service.impl # 扫描的服务接口包路径
+    base-packages: com.superb.upetstar.upsrecord.service.impl # 扫描的服务接口包路径
   protocol:
     name: dubbo # dubbo协议
     port: -1 # dubbo协议端口, -1 表示自增端口，从 20880 开始

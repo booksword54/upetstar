@@ -1,0 +1,21 @@
+version: "1"
+services:
+  nginx_proxy:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/nginx-proxy:latest
+    container_name: "nginx_proxy"
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/nginx/conf.d
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  upetstar-gateway:
+    image: registry.cn-hangzhou.aliyuncs.com/upetstar/upetstar-gateway:latest
+    container_name: "upetstar-gateway"
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      - VIRTUAL_HOST=111.67.203.217
