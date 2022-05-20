@@ -17,21 +17,3 @@ spring:
         namespace: 362afcd8-a377-4733-b1f1-92b3e3633037
         group: ${spring.profiles.active}    #生产环境
         file-extension: yaml
-    gateway:
-      routes:
-        - id: service-record-router
-          uri: lb://upetstar-record
-          predicates:
-            - Path=/record/**
-        - id: service-community-router
-          uri: lb://upetstar-community
-          predicates:
-            - Path=/community/**
-        - id: service-mine-router
-          uri: lb://upetstar-mine
-          predicates:
-            - Path=/mine/**
-        - id: service-image-router
-          uri: lb://upetstar-image
-          predicates:
-            - Path=/image/**

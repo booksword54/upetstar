@@ -1,5 +1,6 @@
 package com.superb.upetstar.upsmine.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,10 +11,12 @@ import com.superb.upetstar.common.pojo.entity.Pet;
 import com.superb.upetstar.common.pojo.es.ESPet;
 import com.superb.upetstar.common.pojo.vo.PetDetailVO;
 import com.superb.upetstar.common.pojo.vo.PetListVO;
+import com.superb.upetstar.upsmine.config.SentinelHandlerClass;
 import com.superb.upetstar.upsmine.mapper.PetMapper;
 import com.superb.upetstar.service.IAdoptRecordService;
 import com.superb.upetstar.service.IPetService;
 import com.superb.upetstar.service.IUserService;
+import com.superb.upetstar.upsmine.utils.MyBlockExceptionHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
@@ -102,6 +105,9 @@ public class PetServiceImpl extends ServiceImpl<PetMapper, Pet> implements IPetS
     }
 
     @Override
+    @SentinelResource(value = "updateByAdoptApply",
+            blockHandlerClass = SentinelHandlerClass.class, blockHandler = "updateByAdoptApplyException",
+            fallback = "updateByAdoptApplyError", fallbackClass = SentinelHandlerClass.class)
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ)
     public int updateByAdoptApply(AdoptApplication adoptApplication) {
         if (adoptApplication == null) {

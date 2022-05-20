@@ -33,7 +33,25 @@ spring:
           - dataId: log4j.properties
             group: prod
             refresh: true
-
+    sentinel:
+      transport:
+        dashboard: 43.226.152.69:8858
+        port: 8719
+      datasource:
+        flow: # 流控规则
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-flow-rules
+            groupId: prod
+            data-type: json
+            rule-type: flow # 类型来自RuleType类
+          degrade:
+            nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            data-id: ${spring.application.name}-degrade-rules
+            groupId: prod
+            data-type: json
+            rule-type: degrade # 类型来自RuleType类
 dubbo:
   cloud:
     subscribed-services: upetstar-record,upetstar-community # 订阅 领养记录、社区管理 微服务

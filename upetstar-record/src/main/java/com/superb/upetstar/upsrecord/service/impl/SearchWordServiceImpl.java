@@ -1,8 +1,10 @@
 package com.superb.upetstar.upsrecord.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.superb.upetstar.common.utils.DateUtils;
+import com.superb.upetstar.upsrecord.config.SentinelHandlerClass;
 import com.superb.upetstar.upsrecord.mapper.SearchWordMapper;
 import com.superb.upetstar.common.pojo.entity.AdoptRecord;
 import com.superb.upetstar.common.pojo.entity.Pet;
@@ -15,6 +17,7 @@ import com.superb.upetstar.upsrecord.repository.PetRepository;
 import com.superb.upetstar.service.IAdoptRecordService;
 import com.superb.upetstar.service.IPetService;
 import com.superb.upetstar.service.ISearchWordService;
+import com.superb.upetstar.upsrecord.utils.MyBlockExceptionHandler;
 import com.superb.upetstar.upsrecord.utils.SearchRedisHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -46,6 +49,9 @@ public class SearchWordServiceImpl extends ServiceImpl<SearchWordMapper, SearchW
     private SearchRedisHelper searchRedisHelper;
 
     @Override
+    @SentinelResource(value = "search",
+            blockHandlerClass = SentinelHandlerClass.class, blockHandler = "searchException",
+            fallback = "searchError", fallbackClass = SentinelHandlerClass.class)
     public List<AdoptRecordVO> search(String word) {
         if (StringUtils.isEmpty(word)) {
             return new ArrayList<>();
